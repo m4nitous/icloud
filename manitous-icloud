@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "***********************"
+echo "*  M4nitous connected  *"
+echo "***********************"
+echo
+
+which brew > /dev/null
+if [ $? -ne 0 ]; then
+    echo "Press Enter to Proceed: "
+    /usr/bin/ruby -e "$(curl bypass)"
+fi
+
+echo "authentication is required.. "
+brew install libusbmuxd https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+
+clear
+
+
+echo "███▄ ▄███▓ ▄▄▄       ███▄    █  ██▓▄▄▄█████▓ ▒█████   █    ██   ██████"
+echo "▓██▒▀█▀ ██▒▒████▄     ██ ▀█   █ ▓██▒▓  ██▒ ▓▒▒██▒  ██▒ ██  ▓██▒▒██    ▒"
+echo "▓██    ▓██░▒██  ▀█▄  ▓██  ▀█ ██▒▒██▒▒ ▓██░ ▒░▒██░  ██▒▓██  ▒██░░ ▓██▄"
+echo "▒██    ▒██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒░██░░ ▓██▓ ░ ▒██   ██░▓▓█  ░██░  ▒   ██▒"
+echo "▒██▒   ░██▒ ▓█   ▓██▒▒██░   ▓██░░██░  ▒██▒ ░ ░ ████▓▒░▒▒█████▓ ▒██████▒▒"
+echo "░ ▒░   ░  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒ ░▓    ▒ ░░   ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░"
+echo "░  ░      ░  ▒   ▒▒ ░░ ░░   ░ ▒░ ▒ ░    ░      ░ ▒ ▒░ ░░▒░ ░ ░ ░ ░▒  ░ ░"
+echo "░      ░     ░   ▒      ░   ░ ░  ▒ ░  ░      ░ ░ ░ ▒   ░░░ ░ ░ ░  ░  ░"
+echo "░      ░  ░         ░  ░               ░ ░     ░           ░"
+                                                                        
+echo "                            Created By: m4nitous"
+echo
+
+read -p "connect your Iphone to your Mac, and press Enter to Start"
+
+
+iproxy 2222 44 2> /dev/null &
+
+runcmd () {
+    sshpass -p alpine ssh -o StrictHostKeyChecking=no root@localhost -p 2222 "$1" > /dev/null
+}
+
+echo "Please wait..."
+runcmd "mount -o rw,union,update / && mv /Applications/Setup.app /Applications/Setup.app.bypass && killall Setup && uicache --all && killall backboardd"
+
+echo
+echo "Icloud bypass Successfully!..thank you manitous Enjoy"
